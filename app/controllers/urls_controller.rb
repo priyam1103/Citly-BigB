@@ -1,6 +1,6 @@
 class UrlsController < ApplicationController
     attr_accessor :url
-    before_action :getParams, only: :create
+    before_action :getParams, only: %i[create update]
     before_action :getUrl, only: :show
     require 'digest'
 
@@ -31,11 +31,15 @@ class UrlsController < ApplicationController
 
     def show 
         if url
+            url.clicks += 1;
+            url.save
             redirect_to url.originalUrl
         else
             redirect_to "http://localhost:3000"
         end
     end
+
+   
 
     def getParams
         params.permit(:originalUrl)
