@@ -37,7 +37,7 @@ class UrlsController < ApplicationController
             url.update_attribute(:clicks, url.clicks+1)
             redirect_to url.originalUrl
         else
-            redirect_to "http://localhost:3000"
+            redirect_to "https://citly-priyam-internship-l0.herokuapp.com/"
         end
     end
 

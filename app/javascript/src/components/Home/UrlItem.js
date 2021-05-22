@@ -32,10 +32,10 @@ export default function UrlItem({
         </a>
         <a
           class="p-4 underline text-blue-800 w-2/5 text-center hover:text-blue-700 break-all"
-          href={`http://localhost:3000/${shortCode}`}
+          href={`https://citly-priyam-internship-l0.herokuapp.com/${shortCode}`}
           target="_blank"
         >
-          {`http://localhost:3000/${shortCode}`}
+          {`https://citly-priyam-internship-l0.herokuapp.com/${shortCode}`}
         </a>
       </div>
       <aside class="flex items-center bg-gray-100 ">

@@ -10,7 +10,7 @@ const generatePDF = (urls) => {
   urls.forEach((url) => {
     const urlData = [
       url.originalUrl,
-      `http://localhost:3000/${url.shortCode}`,
+      `https://citly-priyam-internship-l0.herokuapp.com/${url.shortCode}`,
       url.clicks,
     ];
     tableRows.push(urlData);
