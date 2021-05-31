@@ -58,8 +58,7 @@ class UrlsController < ApplicationController
         if url.destroy
             render status: :ok, json: { notice: 'Successfully deleted url.' }
           else
-            render status: :unprocessable_entity, json: { errors:
-            url.errors.full_messages }
+            render status: :unprocessable_entity, json: { errors: url.errors.full_messages }
           end
     end
 
