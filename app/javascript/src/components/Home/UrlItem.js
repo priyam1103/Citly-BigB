@@ -1,8 +1,8 @@
 import React from "react";
 import Pin from "./Pin";
 export default function UrlItem({
-  originalUrl,
-  shortCode,
+  original_url,
+  short_code,
   clicks,
   pinned,
   pinUnpin,
@@ -17,7 +17,7 @@ export default function UrlItem({
               ? "text-purple-500 p-4 bg-gray-100 hover:text-purple-400"
               : "text-gray-500 p-4 bg-gray-100 hover:text-purple-400"
           }`}
-          onClick={() => pinUnpin(shortCode)}
+          onClick={() => pinUnpin(short_code)}
         >
           <Pin />
         </button>
@@ -25,17 +25,17 @@ export default function UrlItem({
       <div className="w-4/5 flex justify-between items-center">
         <a
           className="p-4 underline text-blue-800 w-2/5 hover:text-blue-700 break-all"
-          href={originalUrl}
+          href={original_url}
           target="_blank"
         >
-          {originalUrl}
+          {original_url}
         </a>
         <a
           className="p-4 underline text-blue-800 w-2/5 text-center hover:text-blue-700 break-all"
-          href={`https://citly-priyam-internship-l0.herokuapp.com/${shortCode}`}
+          href={`https://citly-priyam-internship-l0.herokuapp.com/${short_code}`}
           target="_blank"
         >
-          {`https://citly-priyam-internship-l0.herokuapp.com/${shortCode}`}
+          {`https://citly-priyam-internship-l0.herokuapp.com/${short_code}`}
         </a>
       </div>
       <aside className="flex items-center bg-gray-100 ">
@@ -45,7 +45,7 @@ export default function UrlItem({
         <span
           title="Clicks"
           className="text-red-600 p-4 cursor-pointer"
-          onClick={() => deleteUrl(shortCode)}
+          onClick={() => deleteUrl(short_code)}
         >
           &times;
         </span>

@@ -1,8 +1,8 @@
 class UrlsController < ApplicationController
     attr_accessor :url
-    before_action :checkUrl, only: :create
-    before_action :getParams, only: :create 
-    before_action :getUrl, only: %i[create show update destroy]
+    before_action :check_url, only: :create
+    before_action :get_params, only: :create 
+    before_action :get_url, only: %i[create show update destroy]
     require 'digest'
 
     def index
@@ -18,12 +18,12 @@ class UrlsController < ApplicationController
 
 
     def create
-        newurl = Url.new(getParams)
-        newurl.clicks = 0
-        newurl.shortCode = shortened_url
-        newurl.pinned = false
-        if newurl.save
-            render status: :ok, json: { notice: 'Url shortend', url: newurl  }
+        new_url = Url.new(get_params)
+        new_url.clicks = 0
+        new_url.short_code = shortened_url
+        new_url.pinned = false
+        if new_url.save
+            render status: :ok, json: { notice: 'Url shortend', url: new_url  }
         else
             render status: :unprocessable_entity, json: {
                   errors: url.errors.full_messages.to_sentence
@@ -32,10 +32,9 @@ class UrlsController < ApplicationController
     end
 
     def show 
-
         if url
             url.update_attribute(:clicks, url.clicks+1)
-            redirect_to url.originalUrl
+            redirect_to url.original_url
         else
             redirect_to "https://citly-priyam-internship-l0.herokuapp.com/"
         end
@@ -57,22 +56,22 @@ class UrlsController < ApplicationController
     def destroy
         if url.destroy
             render status: :ok, json: { notice: 'Successfully deleted url.' }
-          else
+        else
             render status: :unprocessable_entity, json: { errors: url.errors.full_messages }
-          end
+        end
     end
 
-    def getParams
-        params.permit(:originalUrl)
+    def get_params
+        params.permit(:original_url)
     end
 
-    def checkUrl
-        @url = Url.find_by(originalUrl: params[:originalUrl])
-
+    def check_url
+        @url = Url.find_by(original_url: params[:original_url])
         if @url
             render status: :unprocessable_entity, json: {already: true, errors: "Shortened URL already exists"}
         end
     end
+
     private
 
     def shortened_url
@@ -81,10 +80,11 @@ class UrlsController < ApplicationController
         return Digest::SHA1.hexdigest(seed)[0,6]
     end
 
-    def getUrl
-        @url = Url.find_by(shortCode: params[:id])
+    def get_url
+        @url = Url.find_by(short_code: params[:id])
         puts @url
         rescue ActiveRecord::RecordNotFound => errors
           render json: {errors: errors}
-      end
+    end
+    
 end

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import urlsApi from "apis/urls";
 export default function InputHeader({ setUrls, downloadPdf, setToast }) {
   const [url, setUrl] = useState("");
+
   async function postUrl() {
     try {
-      const response = await urlsApi.postUrl({ originalUrl: url });
+      const response = await urlsApi.postUrl({ original_url: url });
       if (response.status == 200) {
         setUrl("");
         setUrls((prevState) => {
@@ -15,14 +16,16 @@ export default function InputHeader({ setUrls, downloadPdf, setToast }) {
           setToast({ state: false, body: null });
         }, 3000);
       }
-    } catch (err) {
+    }
+    catch (err) {
       if (err.response.data.already)
         setToast({ state: false, body: err.response.data.errors });
-      setTimeout(() => {
+        setTimeout(() => {
         setToast({ state: false, body: null });
       }, 3000);
     }
   }
+
   return (
     <section className = "flex justify-between p-2 my-4 w-11/12 mx-auto">
       <div className = "flex-grow">

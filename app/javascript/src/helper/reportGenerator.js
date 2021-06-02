@@ -9,8 +9,8 @@ const generatePDF = (urls) => {
 
   urls.forEach((url) => {
     const urlData = [
-      url.originalUrl,
-      `https://citly-priyam-internship-l0.herokuapp.com/${url.shortCode}`,
+      url.original_url,
+      `https://citly-priyam-internship-l0.herokuapp.com/${url.short_code}`,
       url.clicks,
     ];
     tableRows.push(urlData);

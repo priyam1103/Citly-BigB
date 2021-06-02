@@ -6,9 +6,11 @@ import Navbar from "./Navbar";
 import Toast from "../Toast";
 import generatePDF from "../../helper/reportGenerator";
 export default function index() {
+
   useEffect(() => {
     fetchUrls();
   }, []);
+
   const [urls, setUrls] = useState([]);
   const [toast, setToast] = useState({ state: false, body: null });
 
@@ -22,9 +24,10 @@ export default function index() {
       console.log(err);
     }
   }
-  async function pinUnpin(shortCode) {
+
+  async function pinUnpin(short_code) {
     try {
-      const response = await urlsApi.pinUnpinUrl(shortCode);
+      const response = await urlsApi.pinUnpinUrl(short_code);
       if (response.status == 200) {
         fetchUrls();
       }
@@ -32,12 +35,14 @@ export default function index() {
       console.log(err.response);
     }
   }
+
   async function downloadPdf() {
     generatePDF(urls);
   }
-  async function deleteUrl(shortCode) {
+
+  async function deleteUrl(short_code) {
     try {
-      const response = await urlsApi.deleteUrl(shortCode);
+      const response = await urlsApi.deleteUrl(short_code);
       if (response.status == 200) {
         fetchUrls();
       }
@@ -45,6 +50,7 @@ export default function index() {
       console.log(err.response);
     }
   }
+  
   return (
     <div>
       {toast.body && <Toast success={toast.state} body={toast.body}/>}
