@@ -2,14 +2,14 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
     attr_accessor :url
-    
+
     def setup
         @url = Url.new()
     end
 
     def test_original_url_should_be_not_be_empty
         assert_not url.valid?
-        assert_equal ["original_url can't be blank"], @url.errors.full_messages
+        assert_equal ["Original url can't be blank"], @url.errors.full_messages
     end
 
     def test_with_original_url
